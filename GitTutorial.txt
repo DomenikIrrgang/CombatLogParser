@@ -1,5 +1,5 @@
 git clone [RepositoryUrl] (downloads the current status of the repository on the server and creates a local copy)
 git add [File] (adds a file to your local git repository)
-git remove [File] (removes a file from you local git repository)
+git rm [File] (removes a file from you local git repository)
 git commit -m [commit message] (commits all changes in your local files to your local repository)
 git push (pushes all the changes you made locally to the server) 
