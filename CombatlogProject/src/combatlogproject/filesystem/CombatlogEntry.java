@@ -14,9 +14,7 @@ public class CombatlogEntry {
     public CombatlogEntry(long timestamp, String[] args) {
         this.timestamp = timestamp;
         this.args = args;
-        this.CombatlogEvent=CombatlogEvent;
-        
-
+        this.CombatlogEvent = CombatlogEvent;
     }
 
     public String[] getArgs() {
