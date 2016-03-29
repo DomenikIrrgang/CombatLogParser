@@ -7,14 +7,14 @@ package combatlogproject.filesystem;
  */
 public class CombatlogEntry {
 
-    private long timestamp;
-    private String[] args;
-    private CombatlogEvent CombatlogEvent;
+    private final long timestamp;
+    private final String[] args;
+    private final CombatlogEvent CombatlogEvent;
 
-    public CombatlogEntry(long timestamp, String[] args) {
+    public CombatlogEntry(CombatlogEvent combatlogEvent, long timestamp, String[] args) {
         this.timestamp = timestamp;
         this.args = args;
-        this.CombatlogEvent = CombatlogEvent;
+        this.CombatlogEvent = combatlogEvent;
     }
 
     public String[] getArgs() {
