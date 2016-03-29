@@ -7,5 +7,5 @@ package combatlogproject.filesystem;
  * @author Domenik Irrgang
  */
 public interface CombatlogFileFactory {
-    
+    CombatlogFile createCombatlogfile();
 }
