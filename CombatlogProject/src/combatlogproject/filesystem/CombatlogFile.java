@@ -1,31 +1,32 @@
 package combatlogproject.filesystem;
 
+import java.util.*;
+
 /**
- * This class contains every information that a "World of Warcraft" combatlog file would carry.
+ * This class contains every information that a "World of Warcraft" combatlog
+ * file would carry.
  *
  * @author Domenik Irrgang
  */
-import java.util.*;
 public class CombatlogFile {
-    
-    private List <CombatlogEntry> combatLogEntries ;
-    protected CombatlogFile(){};
-    
-    public List <CombatlogEntry> getAllEntries(){
-    return combatLogEntries;
+
+    private List<CombatlogEntry> combatLogEntries;
+
+    protected CombatlogFile() {
     }
-    
-    public void addCombatlogEntry(CombatlogEntry combatlogEntry){
+
+    public List<CombatlogEntry> getAllEntries() {
+        return combatLogEntries;
+    }
+
+    public void addCombatlogEntry(CombatlogEntry combatlogEntry) {
         combatLogEntries.add(combatlogEntry);
-        
     }
-    
-    public CombatlogEntry removeCombatlogEntry(CombatlogEntry combatlogEntry){
-    if (combatLogEntries.remove(combatlogEntry)){
-return combatlogEntry;
-}
-    return null;
+
+    public CombatlogEntry removeCombatlogEntry(CombatlogEntry combatlogEntry) {
+        if (combatLogEntries.remove(combatlogEntry)) {
+            return combatlogEntry;
+        }
+        return null;
     }
-      
-    
 }
