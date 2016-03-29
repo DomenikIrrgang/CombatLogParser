@@ -26,6 +26,6 @@ public class CombatlogEntry {
     }
 
     public CombatlogEvent getCombatlogEvent() {
-        return CombatlogEvent;
+        return combatlogEvent;
     }
 }
