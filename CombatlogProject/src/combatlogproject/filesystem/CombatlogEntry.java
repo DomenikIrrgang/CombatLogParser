@@ -9,12 +9,12 @@ public class CombatlogEntry {
 
     private final long timestamp;
     private final String[] args;
-    private final CombatlogEvent CombatlogEvent;
+    private final CombatlogEvent combatlogEvent;
 
     public CombatlogEntry(CombatlogEvent combatlogEvent, long timestamp, String[] args) {
         this.timestamp = timestamp;
         this.args = args;
-        this.CombatlogEvent = combatlogEvent;
+        this.combatlogEvent = combatlogEvent;
     }
 
     public String[] getArgs() {
