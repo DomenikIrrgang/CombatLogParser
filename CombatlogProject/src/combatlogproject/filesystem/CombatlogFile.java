@@ -13,6 +13,7 @@ public class CombatlogFile {
     private List<CombatlogEntry> combatLogEntries;
 
     protected CombatlogFile() {
+        combatLogEntries = new ArrayList<CombatlogEntry>();
     }
 
     public List<CombatlogEntry> getAllEntries() {
