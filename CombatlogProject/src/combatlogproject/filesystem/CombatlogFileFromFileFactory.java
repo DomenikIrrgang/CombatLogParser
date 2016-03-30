@@ -33,16 +33,20 @@ public class CombatlogFileFromFileFactory implements CombatlogFileFactory {
             List<String> events = new ArrayList<String>();
 
             while ((line = bufferedReader.readLine()) != null) {
-
-                String[] splitBySpace = line.split(" ");
-                long timestamp = createTimestamp(splitBySpace[0], splitBySpace[1]);
-                String[] splitForEvent = splitBySpace[3].split(",");
-                CombatlogEvent combatlogEvent = CombatlogEvent.valueOf(splitForEvent[0]);
-                String[] args = line.substring(line.indexOf(",")).split(",");
+                int endDate = line.indexOf(" ");
+                String date = line.substring(0, endDate);
+                int endTime = line.indexOf(" ", endDate + 1);
+                String time = line.substring(endDate + 2, endTime);
+                int firstComma = line.indexOf(",");
+                String event = line.substring(endTime, firstComma);
+                String allArgs = line.substring(firstComma + 1, line.length());
+                String[] args = allArgs.split(",");
+                long timestamp = createTimestamp(date, time);
+                CombatlogEvent combatlogEvent = CombatlogEvent.ENCOUNTER_END; //CombatlogEvent.valueOf(splitForEvent[0]);
                 CombatlogEntry combatlogEntry = new CombatlogEntry(combatlogEvent, timestamp, args);
                 combatlogFile.addCombatlogEntry(combatlogEntry);
-                if (!events.contains(splitForEvent[0] + ",")) {
-                    events.add(splitForEvent[0] + ",");
+                if (!events.contains(event + ",")) {
+                    events.add(event + ",");
                 }
 
             }
