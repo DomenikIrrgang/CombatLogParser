@@ -30,10 +30,10 @@ public class CombatlogFileFromFileFactory implements CombatlogFileFactory {
             CombatlogFile combatlogFile = new CombatlogFile();
             String line;
 
+            int endDate = 4;
+            int endTime = 17;
             while ((line = bufferedReader.readLine()) != null) {
-                int endDate = 4;
                 String date = line.substring(0, endDate);
-                int endTime = 17;
                 String time = line.substring(endDate + 2, endTime);
                 int firstComma = line.indexOf(",");
                 String event = line.substring(endTime + 2, firstComma);
@@ -44,8 +44,6 @@ public class CombatlogFileFromFileFactory implements CombatlogFileFactory {
                 CombatlogEntry combatlogEntry = new CombatlogEntry(combatlogEvent, timestamp, args);
                 combatlogFile.addCombatlogEntry(combatlogEntry);
             }
-
-     
 
             return combatlogFile;
         } catch (FileNotFoundException ex) {
