@@ -13,35 +13,33 @@ import java.util.List;
  *
  * @author Domenik Irrgang
  */
-public class CombatlogFileFromFileFactory implements CombatlogFileFactory {
+public class CombatlogFileFromFileFactory extends CombatlogFileFactory {
 
     private final String filePath;
 
     public CombatlogFileFromFileFactory(String filePath) {
+        super();
         this.filePath = filePath;
     }
 
     @Override
-    public CombatlogFile createCombatlogfile() {
+    public boolean processCombatlogFile() {
 
-        try {
-            FileReader fileReader = new FileReader(filePath);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            CombatlogFile combatlogFile = new CombatlogFile();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {
+
             String line;
 
             int endDate = 4;
             int endTime = 17;
-            int firstComma = 0;
+            int firstComma;
             String date;
             String time;
             String allArgs;
             String[] args;
-            long timestamp;
             String event;
             CombatlogEvent combatlogEvent;
             CombatlogEntry combatlogEntry;
-            
+
             while ((line = bufferedReader.readLine()) != null) {
                 date = line.substring(0, endDate);
                 time = line.substring(endDate + 2, endTime);
@@ -49,26 +47,26 @@ public class CombatlogFileFromFileFactory implements CombatlogFileFactory {
                 event = line.substring(endTime + 2, firstComma);
                 allArgs = line.substring(firstComma + 1, line.length());
                 args = allArgs.split(",");
-                timestamp = createTimestamp(date, time);
+
                 combatlogEvent = CombatlogEvent.valueOf(event);
-                combatlogEntry = new CombatlogEntry(combatlogEvent, timestamp, args);
-                combatlogFile.addCombatlogEntry(combatlogEntry);
+                combatlogEntry = new CombatlogEntry(combatlogEvent, date, time, args);
+                for (Module module : modules) {
+                    module.processFileCallback(combatlogEntry);
+                }
+                combatlogEntry = null;
             }
 
-            return combatlogFile;
+            return true;
         } catch (FileNotFoundException ex) {
-            return null;
+            return false;
         } catch (IOException ex) {
-            return null;
+            return false;
         }
     }
 
-    private long createTimestamp(String date, String time) {
-        return 0L;
+    public static void main(String[] args) {
+        CombatlogFileFactory factory = new CombatlogFileFromFileFactory("C:\\Program Files\\WoW\\World of Warcraft\\Logs\\WoWCombatLog.txt");
+        boolean success = factory.processCombatlogFile();
     }
 
-    public static void main(String[] args) {
-        CombatlogFileFactory factory = new CombatlogFileFromFileFactory("C:\\Program Files (x86)\\World of Warcraft\\Logs\\warcraftlogsarchive\\WoWCombatLog-archive-2016-02-21T04-02-48.614Z.txt");
-        CombatlogFile combatlogFile = factory.createCombatlogfile();
-    }
 }
