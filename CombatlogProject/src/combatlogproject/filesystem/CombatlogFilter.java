@@ -13,5 +13,6 @@ public interface CombatlogFilter {
      * @param combatlogFile The CombatlogFile that will get filtered.
      * @return The filtered CombatlogFile.
      */
-    CombatlogFile filter(CombatlogFile combatlogFile);
+   CombatlogFile filter(CombatlogFile combatlogFile, String ... args);
+   
 }

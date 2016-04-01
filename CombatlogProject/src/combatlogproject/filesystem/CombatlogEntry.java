@@ -11,11 +11,15 @@ public class CombatlogEntry {
     private final String[] args;
     private final CombatlogEvent combatlogEvent;
 
-    public CombatlogEntry(CombatlogEvent combatlogEvent, long timestamp, String[] args) {
-        this.timestamp = timestamp;
+    public CombatlogEntry(CombatlogEvent combatlogEvent, String date, String time, String[] args) {
+       this.timestamp=convertDateAndTimeToTimestamp(date,time);
         this.args = args;
         this.combatlogEvent = combatlogEvent;
     }
+    
+    private long convertDateAndTimeToTimestamp(String date, String time){
+        return 0L;
+                }
 
     public String[] getArgs() {
         return args;
