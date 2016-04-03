@@ -65,12 +65,15 @@ public class CombatlogFileFromFileFactory extends CombatlogFileFactory {
     }
 
     public static void main(String[] args) {
-        CombatlogFileFactory factory = new CombatlogFileFromFileFactory("C:\\Program Files\\WoW\\World of Warcraft\\Logs\\WoWCombatLog-split-2016-03-24T07-53-47.935Z.txt");
+        CombatlogFileFactory factory = new CombatlogFileFromFileFactory("C:\\Program Files (x86)\\World of Warcraft\\Logs\\warcraftlogsarchive\\WoWCombatLog-archive-2016-02-21T04-02-48.614Z.txt");
         Module damageDone = new DamageDoneModule();
         Output damageDoneOutput = new DamageDoneByUnitOutput("C:\\Users\\Domenik Irrgang\\Desktop\\CombatlogResult\\damagedone.html");
-        factory.addModule(new DamageDoneModule());
+        Output damageDoneByUnitBySpell = new DamageDoneByUnitBySpellOutput("C:\\Users\\Domenik Irrgang\\Desktop\\CombatlogResult\\damagedonebyspell.html");
+        factory.addModule(damageDone);
+   
         boolean success = factory.processCombatlogFile();
         damageDoneOutput.outputModule(damageDone);
+        damageDoneByUnitBySpell.outputModule(damageDone);
     }
 
 }

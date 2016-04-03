@@ -14,6 +14,7 @@ public class DamageDoneModule extends Module {
     private Map<Unit, Map<Unit, Map<String, Integer>>> damageDone;
 
     public DamageDoneModule() {
+        super();
         events.put(CombatlogEvent.SPELL_DAMAGE, true);
         events.put(CombatlogEvent.SWING_DAMAGE, true);
         events.put(CombatlogEvent.ENVIRONMENTAL_DAMAGE, true);
@@ -24,7 +25,7 @@ public class DamageDoneModule extends Module {
 
     @Override
     public void processFileCallback(CombatlogEntry combatlogEntry) {
-        if (events.get(combatlogEntry.getCombatlogEvent()) == true) {
+        if (events.get(combatlogEntry.getCombatlogEvent()) != null && events.get(combatlogEntry.getCombatlogEvent()) == true) {
 
             if (combatlogEntry.getCombatlogEvent().equals(CombatlogEvent.SPELL_DAMAGE)) {
                 processEventValues(combatlogEntry.getArgs()[1], combatlogEntry.getArgs()[5], combatlogEntry.getArgs()[9], combatlogEntry.getArgs()[24]);
