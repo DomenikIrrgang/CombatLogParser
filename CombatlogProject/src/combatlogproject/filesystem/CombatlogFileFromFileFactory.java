@@ -66,8 +66,11 @@ public class CombatlogFileFromFileFactory extends CombatlogFileFactory {
 
     public static void main(String[] args) {
         CombatlogFileFactory factory = new CombatlogFileFromFileFactory("C:\\Program Files\\WoW\\World of Warcraft\\Logs\\WoWCombatLog-split-2016-03-24T07-53-47.935Z.txt");
+        Module damageDone = new DamageDoneModule();
+        Output damageDoneOutput = new DamageDoneByUnitOutput("C:\\Users\\Domenik Irrgang\\Desktop\\CombatlogResult\\damagedone.html");
         factory.addModule(new DamageDoneModule());
         boolean success = factory.processCombatlogFile();
+        damageDoneOutput.outputModule(damageDone);
     }
 
 }
