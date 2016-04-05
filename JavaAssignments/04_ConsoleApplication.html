@@ -1,0 +1,39 @@
+<h1>04_ConsoleApplication</h1><br>
+<br>
+<b>This assignment is about creating a console application that can execute commands. You should be able to add or remove Commands dynamically from the ConsoleApplication.</b><br>
+<br>
+<ul>
+<li>Implement a class "ConsoleApplication".
+<ul>
+	<li>Implement the function: public void run();
+	<ul>
+		<li>This function should run as long as the variable "runnning" is set to true.</li>
+		<li>For each run of the loop in this function get an input from the command shell.</li>
+	</ul>
+	</li>
+	<li>Implement the function: public void close();
+	<ul>
+		<li>When this function is called the run() function should terminate.</li>
+	</ul>
+	</li>
+</ul>
+</li>
+<li>Implement a abstract class "Command". 
+	<ul>
+	<li>Implement the constructor with the following arguments: ConsoleApplication consoleApplication, String ... args</li>
+	<li>Declare the function: public boolean execute(ConsoleApplication consoleApplication, String ... args);</li>
+	<li>Declare the function: public boolean undo(ConsoleApplication consoleApplication, String ... args);</li>
+	<li>Implement the function: public String getCommandString();  (e.g. C:\>cd Users) cd = CommandString, args= Users</li>
+	</ul>
+</li>
+<li>Add to class "ConsoleApplication"
+	<ul>
+	<li>Implement the function: public void addCommand(Command command);</li>
+	<li>Implement the function: public void removeCommmand(Command command);</li>
+	<li>Implement the function: private Command createCommand(String commandName, String ... args); This function should create a new Instance of a Command and return it.</li>
+	<li>Implement the function: public boolean executeCommand(Command command); This  function should execute the given Command.</li>
+	<li>Implement the function: public boolean undoLastCommand(); Undo's the last Command that has been executed.</li>
+	</ul>
+</li>
+</ul>
+	
